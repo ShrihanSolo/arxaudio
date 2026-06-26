@@ -18,19 +18,19 @@ large-scale structure of the Universe and the tools used to map it.
 
 **Core topics I want to follow closely:**
 
-- Cosmological large-scale structure: power spectra, correlation functions,
-  baryon acoustic oscillations (BAO), redshift-space distortions (RSD)
 - Weak gravitational lensing: cosmic shear, shear calibration, shape
-  measurement, intrinsic alignments
+  measurement, intrinsic alignments, shape analysis
 - Weak lensing systematics research: Point spread functions, baryonic effects,
   other weak lensing measurement pipeline work
-- Galaxy clustering and halo occupation distributions (HOD)
+- Galaxy clustering, galaxy-galaxy lensing, and halo occupation distributions (HOD)
 - Photometric and spectroscopic survey science, especially:
   - LSST / Rubin Observatory (DESC science, DESC pipelines, image
     simulations, photo-z)
   - DESI (spectroscopic clustering, ELG/LRG/QSO target selection, full-shape
     fits)
   - Euclid, DES, HSC (where results connect to the above)
+- Cosmological large-scale structure: power spectra, 3x2 point, 3x2pt,
+  baryon acoustic oscillations (BAO), redshift-space distortions (RSD)
 - Photo-z estimation methods: machine learning photo-z, template fitting,
   redshift calibration with cross-correlations
 - Field-level inference, simulation-based inference (SBI / likelihood-free),
