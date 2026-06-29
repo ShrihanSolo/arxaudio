@@ -61,7 +61,7 @@ arXiv RSS / benty-fields
 ```
 
 1. **Fetch** — pulls today's arXiv RSS feed for each category. New submissions and cross-lists are kept; revisions are skipped.
-2. **Rank** — sends all titles to `OLLAMA_RANK_MODEL` (default: `qwen2.5:1.5b`) in one call with your `preferences.txt`. Each paper is scored 0–10; the top `MAX_PAPERS` get audio, the next `MAX_PAPERS` are listed in the email only.
+2. **Rank** — sends all titles to `OLLAMA_RANK_MODEL` (default: `qwen2.5:14b`) in one call with your `preferences.txt`. Each paper is scored 0–10; the top `MAX_PAPERS` get audio, the next `MAX_PAPERS` are listed in the email only.
 3. **Process** — converts LaTeX/math notation to speakable English via a regex pass (`math_replacements.md`) followed by an optional LLM polish call (`OLLAMA_MODEL`).
 4. **TTS** — synthesizes each paper with Microsoft Edge TTS (`edge-tts`, free, no key). Segments are joined with ffmpeg.
 5. **Email** — sends the MP3 as an HTML email listing all audio papers and email-only runners-up.
@@ -76,8 +76,8 @@ All settings live in `config.py`. Never put secrets there — credentials come f
 | ---------------------- | ------------------------ | ----------- |
 | `PAPER_SOURCE`         | `"benty"`                | `"arxiv"` or `"benty"` |
 | `CATEGORIES`           | `["astro-ph.CO", "astro-ph.GA"]` | arXiv categories to poll (arxiv mode only) |
-| `OLLAMA_MODEL`         | `"qwen2.5:0.5b"`         | Model for math-cleanup (process stage) |
-| `OLLAMA_RANK_MODEL`    | `"qwen2.5:1.5b"`         | Model for relevance ranking. Leave empty to reuse `OLLAMA_MODEL` |
+| `OLLAMA_MODEL`         | `"qwen2.5:0.5b"`         | Model for audio math-cleanup (process stage) |
+| `OLLAMA_RANK_MODEL`    | `"qwen2.5:14b"`         | Model for relevance ranking. Leave empty to reuse `OLLAMA_MODEL` |
 | `TTS_VOICE`            | `"en-US-AndrewNeural"`   | Edge TTS voice. Run `edge-tts --list-voices` to browse |
 | `TTS_SPEED`            | `1.0`                    | Narration speed (`0.8` slower, `1.5` faster) |
 | `MAX_PAPERS`           | `10`                     | Top N papers get audio; next N are email-only. `0` = unlimited |
@@ -95,7 +95,7 @@ Markdown tables mapping LaTeX/math notation to speakable English. Two sections: 
 
 ---
 
-## Running locally
+## Running locally (Only for development)
 
 **Prerequisites:** Python 3.11+, [ffmpeg](https://ffmpeg.org/download.html), [ollama](https://ollama.com/)
 
@@ -190,5 +190,7 @@ arxaudio/
 │   └── tts/                   # TTSBackend ABC + edge-tts / notebookLM implementations
 └── .github/workflows/daily.yml
 ```
+
+PRs and contributions welcome. Please describe changes with clarity and detail.
 
 arxaudio uses no paid services and requires no API keys. The arXiv API, ollama, edge-tts, and ffmpeg are all free. GitHub Actions' free tier (2,000 min/month for public repos) is sufficient for daily runs.
